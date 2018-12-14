@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo "+--------------------------------------+"
+echo "|  Checking for Update and upgrade...  |"
+echo "+--------------------------------------+"
+echo ">>> sudo apt-get update"
+sudo apt-get update
+echo
+echo "Preparing for upgrade... (upgrade - Perform an upgrade)"
+sleep 4s
+echo ">>> sudo apt-get upgrade"
+sudo apt-get upgrade
+echo
+echo "Preparing for dist-upgrade... (dist-upgrade - Distribution upgrade, see apt-get(8))"
+sleep 4s
+echo ">>> sudo apt-get dist-upgrade"
+sudo apt-get dist-upgrade
+echo
+
+echo "+--------------------------------------+"
+echo "|            Cleaning up...            |"
+echo "+--------------------------------------+"
+echo "Preparing for autoremove... (autoremove - Remove automatically all unused packages)"
+sleep 5s
+echo ">>> sudo apt-get autoremove"
+sudo apt-get autoremove
+echo
+echo "Preparing for clean... (clean - Erase downloaded archive files)"
+sleep 4s
+echo ">>> sudo apt-get clean"
+sudo apt-get clean
+echo
+echo "Preparing for autoclean... (autoclean - Erase old downloaded archive files)"
+sleep 3s
+echo ">>> sudo apt-get autoclean"
+sudo apt-get autoclean
+echo
+
+sleep 1s
+echo
+echo "#======================================#"
+echo "           All task completed!          "
+echo "        Your system is up to date!      "
+echo "#======================================#"
