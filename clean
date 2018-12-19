@@ -7,26 +7,30 @@ default="\e[39m"
 
 if (( $EUID != 0 ))
 then
-    sudo clean
+    sudo update
 else
     echo -e     "${blue}+--------------------------------------+"
-    echo -e "|${default}            Cleaning up...            ${blue}|"
+    echo -e "|${default}  Checking for Update and upgrade...  ${blue}|"
     echo               "+--------------------------------------+"
-    echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get autoremove${default}"
-    sudo apt-get autoremove
-    echo
-    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get autoclean${default}"
-    sudo apt-get autoclean
-    echo
-    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get clean${default}"
-    if sudo apt-get clean
+    echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get update${default}"
+    if ! sudo apt-get update
     then
-        echo "Done"
-    else
-        for i in 1 2 3; do echo "Retrying..." && sleep 5s && sudo apt-get clean && echo "Done" && break; done
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get update && break; done
     fi
     echo
-    echo -e  "${blue}#======================================#"
-    echo -e "$default       System Clean up completed!       ${blue}"
-    echo -e         "#======================================#$default"
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get upgrade${default}"
+    if ! sudo apt-get upgrade
+    then
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get upgrade && break; done
+    fi
+    echo
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get dist-upgrade${default}"
+    if ! sudo apt-get dist-upgrade
+    then
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get dist-upgrade && break; done
+    fi
+    echo 
+    echo -e      "$blue#======================================#"
+    echo -e "${default}       Your system is up to date!       $blue"
+    echo -e           "#======================================#$default"
 fi
