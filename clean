@@ -9,22 +9,24 @@ if (( $EUID != 0 ))
 then
     sudo clean
 else
-    echo -e "$blue+--------------------------------------+"
-    echo -e "|$default            Cleaning up...$blue            |"
-    echo "+--------------------------------------+"
-    echo -e ">>>$yellow sudo$cyan apt-get autoremove$default" && 
-    sudo apt-get autoremove && 
-    echo && 
-    echo -e "$blue>>>$yellow sudo$cyan apt-get autoclean$default" && 
-    sudo apt-get autoclean && 
-    echo && 
-    echo -e "$blue>>>$yellow sudo$cyan apt-get clean$default" && 
+    echo -e     "${blue}+--------------------------------------+"
+    echo -e "|${default}            Cleaning up...            ${blue}|"
+    echo               "+--------------------------------------+"
+    echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get autoremove${default}"
+    sudo apt-get autoremove
+    echo
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get autoclean${default}"
+    sudo apt-get autoclean
+    echo
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get clean${default}"
     if sudo apt-get clean
     then
         echo "Done"
+    else
+        for i in 1 2 3; do echo "Retrying..." && sleep 10s && sudo apt-get clean && echo "Done" && break; done
     fi
     echo
-    echo -e "$blue#======================================#"
-    echo -e "$default       System Clean up completed!       "
-    echo -e "$blue#======================================#$default"
+    echo -e  "${blue}#======================================#"
+    echo -e "$default       System Clean up completed!       ${blue}"
+    echo -e         "#======================================#$default"
 fi
