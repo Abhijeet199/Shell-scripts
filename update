@@ -9,7 +9,7 @@ if (( $EUID != 0 ))
 then
     sudo update
 else
-    echo -e "$blue#--------------------------------------+"
+    echo -e "$blue+--------------------------------------+"
     echo -e "| $default Checking for Update and upgrade...$blue  |"
     echo "+--------------------------------------+"
     echo -e ">>>$yellow sudo$cyan apt-get update$default"
