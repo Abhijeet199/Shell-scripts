@@ -13,13 +13,22 @@ else
     echo -e "|${default}  Checking for Update and upgrade...  ${blue}|"
     echo               "+--------------------------------------+"
     echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get update${default}"
-    sudo apt-get update 
+    if ! sudo apt-get update
+    then
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get update && break; done
+    fi
     echo
     echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get upgrade${default}"
-    sudo apt-get upgrade
+    if ! sudo apt-get upgrade
+    then
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get upgrade && break; done
+    fi
     echo
     echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get dist-upgrade${default}"
-    sudo apt-get dist-upgrade
+    if ! sudo apt-get dist-upgrade
+    then
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get dist-upgrade && break; done
+    fi
     echo 
     echo -e      "$blue#======================================#"
     echo -e "${default}       Your system is up to date!       $blue"
