@@ -1,3 +1,15 @@
 #!/bin/bash
 
-update && echo && printf "preparing for cleanup..." && sleep 3s && echo && clean
+pause()
+{
+    echo
+    secs=3
+    while [ $secs -ge 0 ]; do
+        sleep 1
+        echo -ne "[Clean up start in ${secs}s please wait...]\033[0K\r"
+        : $((secs--))
+    done
+    echo
+}
+
+update && pause && clean
