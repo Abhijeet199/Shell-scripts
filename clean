@@ -23,7 +23,7 @@ else
     then
         echo "Done"
     else
-        for i in 1 2 3; do echo "Retrying..." && sleep 10s && sudo apt-get clean && echo "Done" && break; done
+        for i in 1 2 3; do echo "Retrying..." && sleep 5s && sudo apt-get clean && echo "Done" && break; done
     fi
     echo
     echo -e  "${blue}#======================================#"
