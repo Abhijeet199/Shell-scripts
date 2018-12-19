@@ -12,43 +12,16 @@ else
     echo -e "$blue+--------------------------------------+"
     echo -e "| $default Checking for Update and upgrade...$blue  |"
     echo "+--------------------------------------+"
-    echo -e ">>>$yellow sudo$cyan apt-get update$default"
-    sudo apt-get update
-    echo
-    
-    echo -e "$blue>>>$yellow sudo$cyan apt-get upgrade$default"
-    sudo apt-get upgrade
-    echo
-    
-    echo -e "$blue>>>$yellow sudo$cyan apt-get dist-upgrade$default"
+    echo -e ">>>$yellow sudo$cyan apt-get update$default" && 
+    sudo apt-get update && 
+    echo && 
+    echo -e "$blue>>>$yellow sudo$cyan apt-get upgrade$default" && 
+    sudo apt-get upgrade && 
+    echo && 
+    echo -e "$blue>>>$yellow sudo$cyan apt-get dist-upgrade$default" && 
     sudo apt-get dist-upgrade
-    echo
-
-    echo -e "$blue+--------------------------------------+"
-    echo -e "|$default            Cleaning up...$blue            |"
-    echo "+--------------------------------------+"
-    echo -e ">>>$yellow sudo$cyan apt-get autoremove$default"
-    sudo apt-get autoremove
-    echo
-    
-    echo -e "$blue>>>$yellow sudo$cyan apt-get autoclean$default"
-    sudo apt-get autoclean
-    echo
-    
-    echo -e "$blue>>>$yellow sudo$cyan apt-get clean$default"
-    echo "Preparing..."
-    sleep 8s
-    if ! sudo apt-get clean
-    then
-        for i in 1 2 3; do echo "Retrying..." && sleep 10s && sudo apt-get clean && echo "Done" && break; done
-    else
-        echo "Done"
-    fi
-
-    
-    echo
+    echo 
     echo -e "$blue#======================================#"
-    echo -e "$default           All task completed!          "
     echo -e "$default        Your system is up to date!      "
     echo -e "$blue#======================================#$default"
 fi
