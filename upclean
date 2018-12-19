@@ -6,7 +6,7 @@ pause()
     secs=3
     while [ $secs -ge 0 ]; do
         sleep 1
-        echo -ne "[Clean up start in ${secs}s please wait...]\033[0K\r"
+        echo -ne "[Clean up will start in ${secs}s please wait...]\033[0K\r"
         : $((secs--))
     done
     echo
