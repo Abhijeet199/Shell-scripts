@@ -7,30 +7,32 @@ default="\e[39m"
 
 if (( $EUID != 0 ))
 then
-    sudo update
+    sudo clean
 else
     echo -e     "${blue}+--------------------------------------+"
-    echo -e "|${default}  Checking for Update and upgrade...  ${blue}|"
+    echo -e "|${default}            Cleaning up...            ${blue}|"
     echo               "+--------------------------------------+"
-    echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get update${default}"
-    if ! sudo apt-get update
+    echo -e ">>>${default} ${yellow}sudo ${cyan}apt-get autoremove${default}"
+    if ! sudo apt-get autoremove
     then
-        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get update && break; done
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get autoremove && break; done
     fi
     echo
-    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get upgrade${default}"
-    if ! sudo apt-get upgrade
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get autoclean${default}"
+    if ! sudo apt-get autoclean
     then
-        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get upgrade && break; done
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get autoclean && break; done
     fi
     echo
-    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get dist-upgrade${default}"
-    if ! sudo apt-get dist-upgrade
+    echo -e "${blue}>>>${default} ${yellow}sudo ${cyan}apt-get clean${default}"
+    if sudo apt-get clean
     then
-        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get dist-upgrade && break; done
+        echo "Done"
+    else
+        for i in 1 2 3; do echo && printf "Retrying..." && sleep 5s && echo && sudo apt-get clean && echo "Done" && break; done
     fi
-    echo 
-    echo -e      "$blue#======================================#"
-    echo -e "${default}       Your system is up to date!       $blue"
-    echo -e           "#======================================#$default"
+    echo
+    echo -e  "${blue}#======================================#"
+    echo -e "$default       System Clean up completed!       ${blue}"
+    echo -e         "#======================================#$default"
 fi
